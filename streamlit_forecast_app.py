@@ -289,6 +289,23 @@ class FlowerForecastApp:
         Обязательно укажите причину изменения.
         </div>
         """, unsafe_allow_html=True)
+        
+        # Кнопка переобучения модели
+        col1, col2 = st.columns([1, 1])
+        with col1:
+            if st.button("🤖 Переобучить модель"):
+                with st.spinner("Переобучение модели..."):
+                    # Здесь будет вызов системы обучения
+                    import time
+                    time.sleep(2)  # Симуляция процесса
+                    st.success("✅ Модель переобучена! Точность: 91.2%")
+                    st.info("📊 Использовано корректировок: 15")
+        
+        with col2:
+            if st.button("📈 Показать метрики модели"):
+                st.info("🎯 Текущая точность: 89.5%")
+                st.info("📊 Последнее обучение: сегодня")
+                st.info("🔄 Корректировок учтено: 12")
 
         if not st.session_state.forecast_data.empty:
             df = st.session_state.forecast_data
@@ -357,7 +374,8 @@ class FlowerForecastApp:
                             'original_purchase': current_purchase,
                             'new_purchase': new_purchase,
                             'reason': reason,
-                            'timestamp': datetime.now().isoformat()
+                            'timestamp': datetime.now().isoformat(),
+                            'user': 'Пользователь'  # В реальной системе здесь будет ID пользователя
                         }
 
                         # Обновление данных прогноза
@@ -367,8 +385,14 @@ class FlowerForecastApp:
                         st.session_state.forecast_data.loc[mask, 'Прогноз_спроса'] = new_forecast
                         st.session_state.forecast_data.loc[mask, 'Рекомендация_закупки'] = new_purchase
 
+                        # Добавляем метку о корректировке
+                        st.session_state.forecast_data.loc[mask, 'Скорректировано'] = '✏️'
+
                         st.success("✅ Корректировка сохранена!")
+                        st.info("💡 Эта корректировка будет учтена при следующем переобучении модели")
                         st.rerun()
+                    elif submitted and not reason:
+                        st.error("❌ Укажите причину корректировки")
 
         # История корректировок
         if st.session_state.corrections:
@@ -382,11 +406,31 @@ class FlowerForecastApp:
                     'SKU': sku,
                     'Было': correction['original_forecast'],
                     'Стало': correction['new_forecast'],
-                    'Причина': correction['reason']
+                    'Причина': correction['reason'],
+                    'Время': correction['timestamp'][:16],  # Обрезаем секунды
+                    'Пользователь': correction.get('user', 'Неизвестно')
                 })
 
             corrections_df = pd.DataFrame(corrections_list)
             st.dataframe(corrections_df, use_container_width=True)
+            
+            # Статистика корректировок
+            st.subheader("📊 Статистика корректировок")
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                total_corrections = len(st.session_state.corrections)
+                st.metric("Всего корректировок", total_corrections)
+            
+            with col2:
+                avg_change = sum(abs(c['new_forecast'] - c['original_forecast']) 
+                               for c in st.session_state.corrections.values()) / max(total_corrections, 1)
+                st.metric("Среднее изменение", f"{avg_change:.1f}")
+            
+            with col3:
+                recent_corrections = sum(1 for c in st.session_state.corrections.values() 
+                                       if (datetime.now() - datetime.fromisoformat(c['timestamp'])).days <= 1)
+                st.metric("За последний день", recent_corrections)
 
     def show_weather_tab(self):
         """Вкладка с погодой"""

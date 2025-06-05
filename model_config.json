@@ -1,0 +1,174 @@
+{
+  "models": {
+    "linear_regression": {
+      "algorithm": "linear_regression",
+      "params": {
+        "intercept": 13.090972293135923,
+        "season_factor": 21.32901813020839,
+        "weekday_factor": 9.571487501991932,
+        "holiday_factor": 8.69573340310666,
+        "temperature": 0.09408506412185158,
+        "precipitation": -1.404749332585442,
+        "trend": 0.8024851261485128
+      },
+      "metrics": {
+        "mae": 26.197265257045512,
+        "mape": 0.9470005165752233,
+        "rmse": 27.797678089824313,
+        "accuracy": 0.05299948342477667,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.116847",
+      "training_samples": 1296,
+      "test_samples": 324
+    },
+    "decision_tree": {
+      "algorithm": "decision_tree",
+      "params": {
+        "max_depth": 9,
+        "min_samples_split": 9,
+        "feature_importance": {
+          "season_factor": 0.3908301971708591,
+          "holiday_factor": 0.15569118179083422,
+          "weekday_factor": 0.22746440810068064,
+          "temperature": 0.11914209694897666,
+          "precipitation": 0.08003321367669017
+        }
+      },
+      "metrics": {
+        "mae": 3.5936124262416853,
+        "mape": 0.11095554341556024,
+        "rmse": 4.063564166645133,
+        "accuracy": 0.8890444565844398,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.116997",
+      "training_samples": 1296,
+      "test_samples": 324
+    },
+    "random_forest": {
+      "algorithm": "random_forest",
+      "params": {
+        "n_estimators": 135,
+        "max_depth": 18,
+        "feature_importance": {
+          "season_factor": 0.2883582298609888,
+          "holiday_factor": 0.21867457166225407,
+          "weekday_factor": 0.21076099711272409,
+          "temperature": 0.08471436585661782,
+          "precipitation": 0.07506642645978191
+        },
+        "oob_score": 0.8148201065729255
+      },
+      "metrics": {
+        "mae": 3.1226297476593925,
+        "mape": 0.09182219918604557,
+        "rmse": 3.845978630922442,
+        "accuracy": 0.9081778008139544,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.126583",
+      "training_samples": 1296,
+      "test_samples": 324
+    }
+  },
+  "training_history": [
+    {
+      "algorithm": "linear_regression",
+      "params": {
+        "intercept": 13.090972293135923,
+        "season_factor": 21.32901813020839,
+        "weekday_factor": 9.571487501991932,
+        "holiday_factor": 8.69573340310666,
+        "temperature": 0.09408506412185158,
+        "precipitation": -1.404749332585442,
+        "trend": 0.8024851261485128
+      },
+      "metrics": {
+        "mae": 26.197265257045512,
+        "mape": 0.9470005165752233,
+        "rmse": 27.797678089824313,
+        "accuracy": 0.05299948342477667,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.116847",
+      "training_samples": 1296,
+      "test_samples": 324
+    },
+    {
+      "algorithm": "decision_tree",
+      "params": {
+        "max_depth": 9,
+        "min_samples_split": 9,
+        "feature_importance": {
+          "season_factor": 0.3908301971708591,
+          "holiday_factor": 0.15569118179083422,
+          "weekday_factor": 0.22746440810068064,
+          "temperature": 0.11914209694897666,
+          "precipitation": 0.08003321367669017
+        }
+      },
+      "metrics": {
+        "mae": 3.5936124262416853,
+        "mape": 0.11095554341556024,
+        "rmse": 4.063564166645133,
+        "accuracy": 0.8890444565844398,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.116997",
+      "training_samples": 1296,
+      "test_samples": 324
+    },
+    {
+      "algorithm": "random_forest",
+      "params": {
+        "n_estimators": 156,
+        "max_depth": 17,
+        "feature_importance": {
+          "season_factor": 0.29669588152476484,
+          "holiday_factor": 0.2691035936157067,
+          "weekday_factor": 0.2259630200478665,
+          "temperature": 0.10558725316348258,
+          "precipitation": 0.0875867750244611
+        },
+        "oob_score": 0.8785828888902102
+      },
+      "metrics": {
+        "mae": 3.523133561277938,
+        "mape": 0.10551097489566034,
+        "rmse": 4.2135895150517095,
+        "accuracy": 0.8944890251043397,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.117158",
+      "training_samples": 1296,
+      "test_samples": 324
+    },
+    {
+      "algorithm": "random_forest",
+      "params": {
+        "n_estimators": 135,
+        "max_depth": 18,
+        "feature_importance": {
+          "season_factor": 0.2883582298609888,
+          "holiday_factor": 0.21867457166225407,
+          "weekday_factor": 0.21076099711272409,
+          "temperature": 0.08471436585661782,
+          "precipitation": 0.07506642645978191
+        },
+        "oob_score": 0.8148201065729255
+      },
+      "metrics": {
+        "mae": 3.1226297476593925,
+        "mape": 0.09182219918604557,
+        "rmse": 3.845978630922442,
+        "accuracy": 0.9081778008139544,
+        "sample_size": 100
+      },
+      "training_date": "2025-06-06T03:22:45.126583",
+      "training_samples": 1296,
+      "test_samples": 324
+    }
+  ],
+  "last_update": "2025-06-06T03:22:45.127848"
+}
